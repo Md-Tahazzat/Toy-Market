@@ -58,7 +58,7 @@ const Navbar = () => {
               src="https://i.ibb.co/6v305Kk/toy-logo-1.png"
               alt=""
             />
-            <a className=" normal-case text-xl font-semibold text-slate-700 md:ml-4">
+            <a className=" normal-case text-xl ml-[20%] md:ml-4 font-semibold text-slate-800">
               Toy Box
             </a>
           </div>

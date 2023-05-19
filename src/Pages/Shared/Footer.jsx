@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 const Footer = () => {
   return (
     <footer className="bg-slate-300 py-10 text-slate-700">
@@ -16,18 +18,23 @@ const Footer = () => {
           </p>
         </div>
         <div>
-          <span className="footer-title">Services</span>
-          <a className="link link-hover">Branding</a>
-          <a className="link link-hover">Design</a>
-          <a className="link link-hover">Marketing</a>
-          <a className="link link-hover">Advertisement</a>
+          <span className="footer-title">Usefull links</span>
+
+          <NavLink to="/toys" className="link link-hover text-blue-600">
+            All Toys
+          </NavLink>
+          <NavLink to="/myToys" className="link link-hover text-blue-600">
+            My Toys
+          </NavLink>
+          <NavLink to="/addToy" className="link link-hover text-blue-600">
+            Add A Toy
+          </NavLink>
         </div>
 
         <div>
           <span className="footer-title">Company</span>
-          <a className="link link-hover">About us</a>
+          <a className="link link-hover ">About us</a>
           <a className="link link-hover">Contact</a>
-          <a className="link link-hover">Jobs</a>
           <a className="link link-hover">Press kit</a>
         </div>
         <div>
