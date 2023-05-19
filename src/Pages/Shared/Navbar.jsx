@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Navbar = () => {
+  const { user, loading, logOutUser } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOutUser().then((result) => console.log(result));
+  };
   const items = (
     <>
       <li>
@@ -10,20 +15,48 @@ const Navbar = () => {
       <li>
         <NavLink to="/toys">All Toys</NavLink>
       </li>
-      <li>
-        <NavLink to="/myToys">My Toys</NavLink>
-      </li>
-      <li>
-        <NavLink to="/addToy">Add A Toy</NavLink>
-      </li>
+      {user && (
+        <>
+          <li>
+            <NavLink to="/myToys">My Toys</NavLink>
+          </li>
+          <li>
+            <NavLink to="/addToy">Add A Toy</NavLink>
+          </li>
+        </>
+      )}
+
       <li>
         <NavLink to="/blogs">Blogs</NavLink>
       </li>
-      <li>
-        <NavLink to="/login">Login</NavLink>
-      </li>
+      {loading ? (
+        <li className="w-5 h-5 animate-spin border-4 border-dotted border-blue-500 rounded-full"></li>
+      ) : user ? (
+        <>
+          <li>
+            <button onClick={handleLogOut}>Log out</button>
+          </li>
+
+          <img
+            title={user?.displayName}
+            className="w-10 h-10 rounded-full border"
+            src={
+              user?.photoURL
+                ? `${user?.photoURL}`
+                : "https://static.vecteezy.com/system/resources/previews/005/544/718/original/profile-icon-design-free-vector.jpg"
+            }
+            alt=""
+          />
+        </>
+      ) : (
+        <li>
+          <NavLink to="login">Login</NavLink>
+        </li>
+      )}
     </>
   );
+
+  console.log(user?.photoURL);
   return (
     <nav className="w-full bg-slate-200">
       <div className="navbar max-w-[85rem] mx-auto">
@@ -64,7 +97,9 @@ const Navbar = () => {
           </div>
         </div>
         <div className="navbar-end hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 font-semibold">{items}</ul>
+          <ul className="menu menu-horizontal px-1 font-semibold flex items-center">
+            {items}
+          </ul>
         </div>
       </div>
     </nav>

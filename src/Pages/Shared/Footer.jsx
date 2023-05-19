@@ -1,8 +1,11 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Footer = () => {
+  const { user } = useContext(AuthContext);
   return (
-    <footer className="bg-slate-300 py-10 text-slate-700">
+    <footer className="bg-slate-400 py-10 text-slate-800">
       <div className="footer max-w-[85rem] mx-auto p-5 md:p-0  text-base-content">
         <div>
           <img
@@ -20,15 +23,20 @@ const Footer = () => {
         <div>
           <span className="footer-title">Usefull links</span>
 
-          <NavLink to="/toys" className="link link-hover text-blue-600">
+          <NavLink to="/toys" className="link link-hover text-blue-800">
             All Toys
           </NavLink>
-          <NavLink to="/myToys" className="link link-hover text-blue-600">
-            My Toys
-          </NavLink>
-          <NavLink to="/addToy" className="link link-hover text-blue-600">
-            Add A Toy
-          </NavLink>
+          {user && (
+            <>
+              <NavLink to="/myToys" className="link link-hover text-blue-800">
+                My Toys
+              </NavLink>
+
+              <NavLink to="/addToy" className="link link-hover text-blue-800">
+                Add A Toy
+              </NavLink>
+            </>
+          )}
         </div>
 
         <div>
@@ -44,6 +52,9 @@ const Footer = () => {
           <a className="link link-hover">Cookie policy</a>
         </div>
       </div>
+      <p className="text-center text-xl mt-2">
+        All rights reserved © Toy Box Ltd.
+      </p>
     </footer>
   );
 };
