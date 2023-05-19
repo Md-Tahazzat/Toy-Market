@@ -5,21 +5,27 @@ import { FaGithub, FaGoogle } from "react-icons/fa";
 import { Link, useNavigation } from "react-router-dom";
 
 const Login = () => {
-  const [passwordError, setPasswordError] = useState("");
-  const [emailError, setEmailError] = useState("");
-  const { googleSing, gitHubSign, createUser } = useContext(AuthContext);
+  const [errorMsg, setErrorMsg] = useState("");
+  const { googleSing, gitHubSign, loginUser } = useContext(AuthContext);
   const navigation = useNavigation();
 
   const {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    createUser(data.email, data.password)
-      .then((user) => console.log(user))
-      .catch((err) => console.log(err));
+    setErrorMsg("");
+    loginUser(data.email, data.password)
+      .then((user) => {
+        reset();
+        console.log(user);
+      })
+      .catch((err) => {
+        setErrorMsg(err.message);
+      });
   };
 
   // Social login methods
@@ -31,7 +37,7 @@ const Login = () => {
           navigation("/", { replace: true });
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => setErrorMsg(err.message));
   };
   const handleGithubSignin = () => {
     gitHubSign()
@@ -40,7 +46,7 @@ const Login = () => {
           navigation("/", { replace: true });
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => setErrorMsg(error?.message));
   };
 
   return (
@@ -64,9 +70,6 @@ const Login = () => {
             placeholder="Enter your email"
             className="py-2 px-2 rounded-md border border-slate-300 focus:outline-none focus:border-slate-400 w-full max-w-lg"
           />
-          <label className="label">
-            {emailError && <span className="text-red-500">{emailError}</span>}
-          </label>
         </div>
 
         <div className="w-full">
@@ -81,9 +84,7 @@ const Login = () => {
             className="py-2 px-2 w-full rounded-md border border-slate-300 focus:outline-none focus:border-slate-400 max-w-sm"
           />
           <label className="label">
-            {passwordError && (
-              <span className="text-red-500">{passwordError}</span>
-            )}
+            {errorMsg && <span className="text-red-500">{errorMsg}</span>}
           </label>
         </div>
 

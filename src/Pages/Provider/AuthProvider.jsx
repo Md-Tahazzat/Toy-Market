@@ -6,6 +6,7 @@ import {
   onAuthStateChanged,
   signOut,
   createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 import auth from "../../firebase/FIrebase";
 
@@ -22,9 +23,9 @@ const AuthProvider = ({ children }) => {
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
-  //   const loginUser = (email, password) => {
-  //     return signInWithEmailAndPassword(auth, email, password);
-  //   };
+  const loginUser = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password);
+  };
 
   const googleSing = () => signInWithPopup(auth, googleProvider);
   const gitHubSign = () => signInWithPopup(auth, gitHubProvider);
@@ -41,7 +42,7 @@ const AuthProvider = ({ children }) => {
   const authInfo = {
     user,
     createUser,
-    //   loginUser,
+    loginUser,
     logOutUser,
     loading,
     googleSing,

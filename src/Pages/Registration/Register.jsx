@@ -5,19 +5,25 @@ import { AuthContext } from "../Provider/AuthProvider";
 import { Link } from "react-router-dom";
 
 const Register = () => {
-  const { googleSing, gitHubSign } = useContext(AuthContext);
-  const [passwordError, setPasswordError] = useState("");
-  const [emailError, setEmailError] = useState("");
+  const { googleSing, gitHubSign, createUser } = useContext(AuthContext);
+  const [errorMsg, setErrorMsg] = useState("");
   const {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    if (data.password !== data.confirmPassword) {
-      console.log();
-    }
+    setErrorMsg("");
+    createUser(data.email, data.password)
+      .then((user) => {
+        reset();
+        console.log(user);
+      })
+      .catch((err) => {
+        setErrorMsg(err.message);
+      });
   };
 
   // social login method
@@ -28,7 +34,7 @@ const Register = () => {
           navigation("/", { replace: true });
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => setErrorMsg(err.message));
   };
   const handleGithubSignin = () => {
     gitHubSign()
@@ -37,7 +43,7 @@ const Register = () => {
           navigation("/", { replace: true });
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => setErrorMsg(err.message));
   };
   return (
     <div className="w-full px-4 md:px-auto">
@@ -67,10 +73,9 @@ const Register = () => {
             Photo URl:
           </label>
           <input
-            type="file"
-            required
-            {...register("image", { required: true })}
-            placeholder="Confirm Password"
+            type="text"
+            {...register("image")}
+            placeholder="Enter photo URL"
             className="py-2 px-2 w-full rounded-md border border-slate-300 focus:outline-none focus:border-slate-400 max-w-sm"
           />
         </div>
@@ -87,9 +92,6 @@ const Register = () => {
             placeholder="Enter your email"
             className="py-2 px-2 rounded-md border border-slate-300 focus:outline-none focus:border-slate-400 w-full max-w-lg"
           />
-          <label className="label">
-            {emailError && <span className="text-red-500">{emailError}</span>}
-          </label>
         </div>
 
         <div className="w-full">
@@ -104,9 +106,7 @@ const Register = () => {
             className="py-2 px-2 w-full rounded-md border border-slate-300 focus:outline-none focus:border-slate-400 max-w-sm"
           />
           <label className="label">
-            {passwordError && (
-              <span className="text-red-500">{passwordError}</span>
-            )}
+            {errorMsg && <span className="text-red-500">{errorMsg}</span>}
           </label>
         </div>
 
