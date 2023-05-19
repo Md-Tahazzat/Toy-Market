@@ -56,6 +56,10 @@ const router = createBrowserRouter([
             <ToyDetails></ToyDetails>
           </PrivateRoute>
         ),
+        loader: ({ params }) =>
+          fetch(
+            `https://my-toy-market-server-md-tahazzat.vercel.app/toys/${params.id}`
+          ),
       },
       {
         path: "/register",
