@@ -7,7 +7,7 @@ const CustomerSaying = () => {
         Customer Saying !!
       </h1>
 
-      <div className="flex items-center justify-center gap-10 my-10 md:px-32">
+      <div className="flex flex-col md:flex-row items-center justify-center gap-10 my-10 md:px-32">
         <div className="card card-side bg-base-100 shadow-xl">
           <figure>
             <img
