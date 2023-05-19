@@ -2,12 +2,24 @@ import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../Provider/AuthProvider";
 import { FaGithub, FaGoogle } from "react-icons/fa";
-import { Link, useNavigation } from "react-router-dom";
+import {
+  Link,
+  useLocation,
+  useNavigate,
+  useNavigation,
+} from "react-router-dom";
 
 const Login = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const { googleSing, gitHubSign, loginUser } = useContext(AuthContext);
-  const navigation = useNavigation();
+  const navigate = useNavigate();
+  const location = useLocation();
+  console.log(location);
+  const from = location?.state?.from || "/";
+  // console.log(location?.state?.from);
+  // if (location?.state?.from.includes("/toys")) {
+  //   toast("you have to login firest");
+  // }
 
   const {
     register,
@@ -21,7 +33,7 @@ const Login = () => {
     loginUser(data.email, data.password)
       .then((user) => {
         reset();
-        console.log(user);
+        navigate(from, { replace: true });
       })
       .catch((err) => {
         setErrorMsg(err.message);
@@ -34,7 +46,7 @@ const Login = () => {
     googleSing()
       .then((result) => {
         if (result?.user?.email) {
-          navigation("/", { replace: true });
+          navigate("/", { replace: true });
         }
       })
       .catch((error) => setErrorMsg(err.message));
@@ -43,7 +55,7 @@ const Login = () => {
     gitHubSign()
       .then((result) => {
         if (result?.user?.email) {
-          navigation("/", { replace: true });
+          navigate("/", { replace: true });
         }
       })
       .catch((error) => setErrorMsg(error?.message));
@@ -90,7 +102,11 @@ const Login = () => {
 
         <p className="text-sm">
           Don't have an account?
-          <Link className="text-blue-600 ml-1" to="/register">
+          <Link
+            state={{ from: from }}
+            className="text-blue-600 ml-1"
+            to="/register"
+          >
             Register
           </Link>
         </p>

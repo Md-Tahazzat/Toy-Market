@@ -2,11 +2,15 @@ import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../Provider/AuthProvider";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const { googleSing, gitHubSign, createUser } = useContext(AuthContext);
   const [errorMsg, setErrorMsg] = useState("");
+  const location = useLocation();
+  const navigate = useNavigate();
+  console.log(location);
+  const from = location?.state?.from || "/";
   const {
     register,
     handleSubmit,
@@ -19,6 +23,7 @@ const Register = () => {
     createUser(data.email, data.password)
       .then((user) => {
         reset();
+        navigate(from, { replace: true });
         console.log(user);
       })
       .catch((err) => {
@@ -31,7 +36,7 @@ const Register = () => {
     googleSing()
       .then((result) => {
         if (result?.user?.email) {
-          navigation("/", { replace: true });
+          navigate(from, { replace: true });
         }
       })
       .catch((error) => setErrorMsg(err.message));
@@ -40,7 +45,7 @@ const Register = () => {
     gitHubSign()
       .then((result) => {
         if (result?.user?.email) {
-          navigation("/", { replace: true });
+          navigate(from, { replace: true });
         }
       })
       .catch((error) => setErrorMsg(err.message));
@@ -112,7 +117,11 @@ const Register = () => {
 
         <p className="text-sm">
           Already have an account?
-          <Link className="text-blue-600 ml-1" to="/login">
+          <Link
+            state={{ from: from }}
+            className="text-blue-600 ml-1"
+            to="/login"
+          >
             Login
           </Link>
         </p>
