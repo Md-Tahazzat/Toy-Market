@@ -3,6 +3,7 @@ import Banner from "./Banner";
 import GalleryImg from "./GalleryImg";
 import ShopByCategory from "./ShopByCategory";
 import ShopByAge from "./ShopByAge";
+import CustomerSaying from "./CustomerSaying";
 
 const Home = () => {
   return (
@@ -11,6 +12,7 @@ const Home = () => {
       <GalleryImg></GalleryImg>
       <ShopByAge></ShopByAge>
       <ShopByCategory></ShopByCategory>
+      <CustomerSaying></CustomerSaying>
     </div>
   );
 };
