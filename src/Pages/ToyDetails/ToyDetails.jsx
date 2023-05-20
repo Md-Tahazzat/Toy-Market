@@ -46,10 +46,6 @@ const ToyDetails = () => {
         <p>
           <span className="font-semibold">Descriptions:</span> {description}
         </p>
-
-        <div className="card-actions justify-end">
-          <button className="btn btn-primary">Watch</button>
-        </div>
       </div>
     </div>
   );

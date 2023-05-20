@@ -18,7 +18,7 @@ const Navbar = () => {
       {user && (
         <>
           <li>
-            <NavLink to="/myToys">My Toys</NavLink>
+            <NavLink to={`/myToys?email=${user?.email}`}>My Toys</NavLink>
           </li>
           <li>
             <NavLink to="/toy/add">Add A Toy</NavLink>

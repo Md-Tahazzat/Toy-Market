@@ -11,6 +11,7 @@ import MyToys from "../Pages/MyToys/MyToys";
 import ToyDetails from "../Pages/ToyDetails/ToyDetails";
 import Blog from "../Pages/Blog/Blog";
 import AddedToyDetails from "../Pages/AddeToyDetails/AddedToyDetails";
+import UpdateToyDetails from "../Pages/UpdateToyDetails/UpdateToyDetails";
 
 const router = createBrowserRouter([
   {
@@ -57,7 +58,7 @@ const router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(
-            `https://my-toy-market-server-md-tahazzat.vercel.app/toys/${params.id}`
+            `https://my-toy-market-server-md-tahazzat.vercel.app/toys/${params.email}`
           ),
       },
       {
@@ -65,6 +66,18 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <AddedToyDetails></AddedToyDetails>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(
+            `https://my-toy-market-server-md-tahazzat.vercel.app/addedToys/${params.id}`
+          ),
+      },
+      {
+        path: "/updateToy/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateToyDetails></UpdateToyDetails>
           </PrivateRoute>
         ),
         loader: ({ params }) =>
