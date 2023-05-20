@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { ToastContainer, toast } from "react-toastify";
 
 const AddToys = () => {
   const {
@@ -19,7 +20,10 @@ const AddToys = () => {
       };
       fetch("https://my-toy-market-server.vercel.app/addedToys/new", options)
         .then((res) => res.json())
-        .then((result) => console.log(result));
+        .then((result) => {
+          result?.insertedId && toast.success("Successfully added");
+          reset();
+        });
     }
   };
   return (
@@ -147,7 +151,7 @@ const AddToys = () => {
           </label>
           <textarea
             required
-            {...register("password", { required: true })}
+            {...register("description", { required: true })}
             placeholder="Enter a brief description"
             className="py-2 px-2 w-full resize-none rounded-md border border-slate-300 focus:outline-none focus:border-slate-400 max-w-sm"
           ></textarea>
@@ -159,6 +163,7 @@ const AddToys = () => {
           value="Add"
         />
       </form>
+      <ToastContainer />
     </div>
   );
 };

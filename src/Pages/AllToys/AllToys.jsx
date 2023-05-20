@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 
 const AllToys = () => {
@@ -64,9 +64,12 @@ const AllToys = () => {
                   <td>{toy?.availableQuantity}</td>
                   <td>{toy?.subCategory}</td>
                   <td>
-                    <button className="py-1 px-2 rounded bg-blue-300 text-slate-700 hover:bg-blue-400">
+                    <Link
+                      to={`/addedToyDetails/${toy._id}`}
+                      className="py-1 px-2 rounded bg-blue-300 text-slate-700 hover:bg-blue-400"
+                    >
                       View Details
-                    </button>
+                    </Link>
                   </td>
                 </tr>
               );
