@@ -22,15 +22,13 @@ const router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
-        path: "/toys",
-        element: (
-          <PrivateRoute>
-            <AllToys></AllToys>
-          </PrivateRoute>
-        ),
+        path: "/addedToys",
+        element: <AllToys></AllToys>,
+        loader: () =>
+          fetch("https://my-toy-market-server.vercel.app/addedToys"),
       },
       {
-        path: "/toys/add",
+        path: "/toy/add",
         element: (
           <PrivateRoute>
             <AddToys></AddToys>
