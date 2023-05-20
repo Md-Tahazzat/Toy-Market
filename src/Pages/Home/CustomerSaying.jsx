@@ -8,7 +8,10 @@ const CustomerSaying = () => {
       </h1>
 
       <div className="flex flex-col md:flex-row items-center justify-center gap-10 my-10 md:px-32">
-        <div className="card card-side bg-base-100 shadow-xl">
+        <div
+          data-aos="fade-right"
+          className="card card-side bg-base-100 shadow-xl"
+        >
           <figure>
             <img
               className="rounded-full w-32 h-32 ml-4"
@@ -25,7 +28,10 @@ const CustomerSaying = () => {
           </div>
         </div>
 
-        <div className="card card-side bg-base-100 shadow-xl">
+        <div
+          data-aos="fade-left"
+          className="card card-side bg-base-100 shadow-xl"
+        >
           <figure>
             <img
               className="rounded-full w-32 h-32 ml-4"
