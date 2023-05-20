@@ -1,6 +1,8 @@
 import React from "react";
+import updateTitle from "../../components/PrivateRoute/Utilities/UpDateTitle";
 
 const Blog = () => {
+  updateTitle("Blog");
   return (
     <div className="py-10">
       <h1 className="text-2xl md:text-3xl text-center font-semibold text-slate-700 my-5">

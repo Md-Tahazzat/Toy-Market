@@ -39,7 +39,7 @@ const Navbar = () => {
 
           <img
             title={user?.displayName}
-            className="w-10 h-10 rounded-full border"
+            className="w-10 h-10 hidden md:block rounded-full border"
             src={
               user?.photoURL
                 ? `${user?.photoURL}`
@@ -56,7 +56,6 @@ const Navbar = () => {
     </>
   );
 
-  console.log(user?.photoURL);
   return (
     <nav className="w-full bg-slate-200">
       <div className="navbar max-w-[85rem] mx-auto">
@@ -85,15 +84,26 @@ const Navbar = () => {
               {items}
             </ul>
           </div>
-          <div className="w-full flex justify-center md:justify-start items-center">
+          <div className="w-full ml-4 md:ml-0 flex justify-center md:justify-start items-center">
             <img
               className="w-16 h-16"
               src="https://i.ibb.co/6v305Kk/toy-logo-1.png"
               alt=""
             />
             <a className=" normal-case text-xl ml-[20%] md:ml-4 font-semibold text-slate-800">
-              Toy Box
+              ToyBox
             </a>
+
+            <img
+              title={user?.displayName}
+              className="w-8 h-8 ml-auto md:hidden rounded-full border"
+              src={
+                user?.photoURL
+                  ? `${user?.photoURL}`
+                  : "https://static.vecteezy.com/system/resources/previews/005/544/718/original/profile-icon-design-free-vector.jpg"
+              }
+              alt=""
+            />
           </div>
         </div>
         <div className="navbar-end hidden lg:flex">

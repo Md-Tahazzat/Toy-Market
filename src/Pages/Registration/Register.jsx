@@ -3,8 +3,10 @@ import { useForm } from "react-hook-form";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../Provider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import updateTitle from "../../components/PrivateRoute/Utilities/UpDateTitle";
 
 const Register = () => {
+  updateTitle("Register");
   const { googleSing, gitHubSign, createUser } = useContext(AuthContext);
   const [errorMsg, setErrorMsg] = useState("");
   const location = useLocation();

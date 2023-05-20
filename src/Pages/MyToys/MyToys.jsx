@@ -3,16 +3,20 @@ import { AuthContext } from "../Provider/AuthProvider";
 import { Link, useLoaderData } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
+import updateTitle from "../../components/PrivateRoute/Utilities/UpDateTitle";
 
 const MyToys = () => {
+  updateTitle("My Toys");
+  const [sortingValue, setSortingValue] = useState("ascending");
   const { user } = useContext(AuthContext);
-  console.log(user?.email);
   const [toys, setToys] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/allAddedToys?email=${user?.email}`)
+    fetch(
+      `http://localhost:5000/allAddedToys?email=${user?.email}&&sort=${sortingValue}`
+    )
       .then((res) => res.json())
       .then((data) => setToys(data));
-  }, []);
+  }, [sortingValue]);
 
   const handleDelete = (id) => {
     fetch(`http://localhost:5000/delete/${id}`, { method: "DELETE" })
@@ -25,12 +29,32 @@ const MyToys = () => {
         }
       });
   };
-  console.log(toys[0]);
+
+  const handleSorting = (e) => {
+    setSortingValue(e.target.value);
+  };
   return (
     <div className="py-10">
-      <h1 className="text-2xl md:text-3xl text-center font-semibold text-slate-700 my-5">
-        Your added toys
-      </h1>
+      <div
+        className="md:flex items center justify-evenly
+      "
+      >
+        <h1 className="text-2xl md:text-3xl text-center font-semibold text-slate-700 my-5">
+          Your added toys
+        </h1>
+        <div className="form-control w-40  max-w-xs mb-6">
+          <label className="label">
+            <span className="label-text">Sort by price</span>
+          </label>
+          <select
+            onChange={() => handleSorting(event)}
+            className="select focus:outline-none select-bordered py-1"
+          >
+            <option value="ascending">Ascending</option>
+            <option value="descending">Descending</option>
+          </select>
+        </div>
+      </div>
       <div className="overflow-x-auto">
         <table className="table w-full">
           {/* head */}

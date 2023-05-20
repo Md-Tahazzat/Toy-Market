@@ -2,8 +2,10 @@ import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import { AuthContext } from "../Provider/AuthProvider";
+import updateTitle from "../../components/PrivateRoute/Utilities/UpDateTitle";
 
 const AddToys = () => {
+  updateTitle("Add Toys");
   const { user } = useContext(AuthContext);
   const {
     register,

@@ -1,7 +1,9 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
+import updateTitle from "../../components/PrivateRoute/Utilities/UpDateTitle";
 
 const ToyDetails = () => {
+  updateTitle("Toy Details");
   const toy = useLoaderData();
   const {
     category,
@@ -13,8 +15,8 @@ const ToyDetails = () => {
     ratings,
     sellerEmail,
     sellerName,
-    _id,
   } = toy;
+  console.log(toy);
   return (
     <div className="card md:card-side shadow-xl my-20 border">
       <figure className="p-2 md:pl-4">

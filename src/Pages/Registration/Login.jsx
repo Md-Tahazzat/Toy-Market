@@ -8,8 +8,10 @@ import {
   useNavigate,
   useNavigation,
 } from "react-router-dom";
+import updateTitle from "../../components/PrivateRoute/Utilities/UpDateTitle";
 
 const Login = () => {
+  updateTitle("Login");
   const [errorMsg, setErrorMsg] = useState("");
   const { googleSing, gitHubSign, loginUser } = useContext(AuthContext);
   const navigate = useNavigate();

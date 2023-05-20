@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
+import updateTitle from "../../components/PrivateRoute/Utilities/UpDateTitle";
 
 const AllToys = () => {
+  updateTitle("All Toys");
   const data = useLoaderData();
   const [toys, setToys] = useState(data);
   const [inputText, setInputText] = useState("");

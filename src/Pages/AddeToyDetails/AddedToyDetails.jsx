@@ -1,7 +1,9 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
+import updateTitle from "../../components/PrivateRoute/Utilities/UpDateTitle";
 
 const AddedToyDetails = () => {
+  updateTitle("Added Toy Details");
   const toy = useLoaderData();
   console.log(toy);
   const {

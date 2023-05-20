@@ -58,7 +58,7 @@ const router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(
-            `https://my-toy-market-server-md-tahazzat.vercel.app/toys/${params.email}`
+            `https://my-toy-market-server-md-tahazzat.vercel.app/toys/${params.id}`
           ),
       },
       {

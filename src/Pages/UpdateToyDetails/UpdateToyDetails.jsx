@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useLoaderData } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import updateTitle from "../../components/PrivateRoute/Utilities/UpDateTitle";
 
 const UpdateToyDetails = () => {
+  updateTitle("Update Toy Details");
   const toyData = useLoaderData();
   const [toy, setToy] = useState(toyData);
   //   console.log(toy);
