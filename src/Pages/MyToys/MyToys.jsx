@@ -19,6 +19,8 @@ const MyToys = () => {
       .then((res) => res.json())
       .then((result) => {
         if (result.deletedCount > 0) {
+          const remainingToy = toys.filter((toy) => toy._id !== id);
+          setToys(remainingToy);
           toast.success("deleted successfully");
         }
       });
