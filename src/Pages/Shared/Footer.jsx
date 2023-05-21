@@ -23,7 +23,7 @@ const Footer = () => {
         <div>
           <span className="footer-title">Usefull links</span>
 
-          <NavLink to="/toys" className="link link-hover text-blue-800">
+          <NavLink to="/addedToys" className="link link-hover text-blue-800">
             All Toys
           </NavLink>
           {user && (
@@ -32,8 +32,8 @@ const Footer = () => {
                 My Toys
               </NavLink>
 
-              <NavLink to="/addToy" className="link link-hover text-blue-800">
-                Add A Toy
+              <NavLink to="/toy/add" className="link link-hover text-blue-800">
+                Add Toy
               </NavLink>
             </>
           )}

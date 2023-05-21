@@ -38,7 +38,7 @@ const Login = () => {
     googleSing()
       .then((result) => {
         if (result?.user?.email) {
-          navigate("/", { replace: true });
+          navigate(from, { replace: true });
         }
       })
       .catch((error) => setErrorMsg(err.message));
@@ -47,7 +47,7 @@ const Login = () => {
     gitHubSign()
       .then((result) => {
         if (result?.user?.email) {
-          navigate("/", { replace: true });
+          navigate(from, { replace: true });
         }
       })
       .catch((error) => setErrorMsg(error?.message));
