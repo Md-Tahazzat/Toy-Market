@@ -5,17 +5,17 @@ import updateTitle from "../../components/PrivateRoute/Utilities/UpDateTitle";
 const AddedToyDetails = () => {
   updateTitle("Added Toy Details");
   const toy = useLoaderData();
-  console.log(toy);
   const {
     description,
     toyPicture,
     toyName,
     price,
-    quantity,
+    availableQuantity,
     ratings,
     sellerEmail,
     sellerName,
   } = toy;
+  console.log(toy);
   return (
     <>
       <h1 className="text-center mt-5 mb-2 text-2xl ">Details of {toyName}</h1>
@@ -31,7 +31,8 @@ const AddedToyDetails = () => {
                 <span className="font-semibold">Price</span> ${price}
               </p>
               <p>
-                <span className="font-semibold">Quantity:</span> {quantity}
+                <span className="font-semibold">Available Quantity :</span>{" "}
+                {availableQuantity}
               </p>
               <p>
                 <span className="font-semibold">Rating:</span> {ratings}
@@ -39,7 +40,7 @@ const AddedToyDetails = () => {
             </div>
             <div className="md:ml-32">
               <p>
-                <span className="font-semibold">Company:</span> {sellerName}
+                <span className="font-semibold">Seller:</span> {sellerName}
               </p>
               <p>
                 <span className="font-semibold">Email:</span> {sellerEmail}

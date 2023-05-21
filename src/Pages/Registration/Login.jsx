@@ -2,11 +2,17 @@ import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../Provider/AuthProvider";
 import { FaGithub, FaGoogle } from "react-icons/fa";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import {
+  Link,
+  useLocation,
+  useNavigate,
+  useNavigation,
+} from "react-router-dom";
 import updateTitle from "../../components/PrivateRoute/Utilities/UpDateTitle";
 
 const Login = () => {
   updateTitle("Login");
+
   const [errorMsg, setErrorMsg] = useState("");
   const { googleSing, gitHubSign, loginUser } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -24,8 +30,10 @@ const Login = () => {
     setErrorMsg("");
     loginUser(data.email, data.password)
       .then((user) => {
-        reset();
-        navigate(from, { replace: true });
+        if (user) {
+          reset();
+          navigate(from, { replace: true });
+        }
       })
       .catch((err) => {
         setErrorMsg(err.message);
@@ -35,18 +43,20 @@ const Login = () => {
   // Social login methods
 
   const handleGoogleSigin = () => {
+    setErrorMsg("");
     googleSing()
       .then((result) => {
-        if (result?.user?.email) {
+        if (result?.user?.accessToken) {
           navigate(from, { replace: true });
         }
       })
       .catch((error) => setErrorMsg(err.message));
   };
   const handleGithubSignin = () => {
+    setErrorMsg("");
     gitHubSign()
       .then((result) => {
-        if (result?.user?.email) {
+        if (result?.user?.accessToken) {
           navigate(from, { replace: true });
         }
       })

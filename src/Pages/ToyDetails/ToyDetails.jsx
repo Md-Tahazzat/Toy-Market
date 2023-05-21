@@ -6,7 +6,6 @@ const ToyDetails = () => {
   updateTitle("Toy Details");
   const toy = useLoaderData();
   const {
-    category,
     description,
     img,
     name,
@@ -16,6 +15,7 @@ const ToyDetails = () => {
     sellerEmail,
     sellerName,
   } = toy;
+  console.log(toy);
   return (
     <div className="card md:card-side shadow-xl my-20 border">
       <figure className="p-2 md:pl-4">
@@ -29,7 +29,8 @@ const ToyDetails = () => {
               <span className="font-semibold">Price</span> ${price}
             </p>
             <p>
-              <span className="font-semibold">Quantity:</span> {quantity}
+              <span className="font-semibold">Available Quantity :</span>{" "}
+              {quantity}
             </p>
             <p>
               <span className="font-semibold">Rating:</span> {ratings}
@@ -37,7 +38,7 @@ const ToyDetails = () => {
           </div>
           <div className="md:ml-32">
             <p>
-              <span className="font-semibold">Company:</span> {sellerName}
+              <span className="font-semibold">Seller:</span> {sellerName}
             </p>
             <p>
               <span className="font-semibold">Email:</span> {sellerEmail}

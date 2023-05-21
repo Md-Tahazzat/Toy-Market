@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link, useLoaderData, useNavigation } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
-import updateTitle from "../../components/PrivateRoute/Utilities/UpDateTitle";
-import Loading from "../Shared/Loading";
+import updateTitle from "../../../components/PrivateRoute/Utilities/UpDateTitle";
+import Loading from "../../Shared/Loading";
 
 const AllToys = () => {
   updateTitle("All Toys");
@@ -26,7 +26,7 @@ const AllToys = () => {
 
   if (navigation.state === "loading") return <Loading></Loading>;
   return (
-    <div className="py-10">
+    <div className="py-10 min-h-[calc(100vh-340px)]">
       <h1 className="text-2xl md:text-3xl text-center font-semibold text-slate-700 my-5">
         All Added Toys
       </h1>

@@ -6,7 +6,7 @@ import Register from "../Pages/Registration/Register";
 import FileNotFound from "../Pages/FileNotFount/FileNotFound";
 import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
 import AddToys from "../Pages/AddToys/AddToys";
-import AllToys from "../Pages/AllToys/AllToys";
+import AllToys from "../Pages/Blog/AllToys/AllToys";
 import MyToys from "../Pages/MyToys/MyToys";
 import ToyDetails from "../Pages/ToyDetails/ToyDetails";
 import Blog from "../Pages/Blog/Blog";

@@ -1,8 +1,12 @@
 import React from "react";
 import updateTitle from "../../components/PrivateRoute/Utilities/UpDateTitle";
+import { useNavigation } from "react-router-dom";
+import Loading from "../Shared/Loading";
 
 const Blog = () => {
   updateTitle("Blog");
+  const navigation = useNavigation();
+  if (navigation?.state === "loading") return <Loading></Loading>;
   return (
     <div className="py-10">
       <h1 className="text-2xl md:text-3xl text-center font-semibold text-slate-700 my-5">

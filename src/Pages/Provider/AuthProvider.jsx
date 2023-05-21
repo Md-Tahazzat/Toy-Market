@@ -7,6 +7,7 @@ import {
   signOut,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import auth from "../../firebase/FIrebase";
 
@@ -30,6 +31,7 @@ const AuthProvider = ({ children }) => {
   const googleSing = () => signInWithPopup(auth, googleProvider);
   const gitHubSign = () => signInWithPopup(auth, gitHubProvider);
   const logOutUser = () => signOut(auth);
+  const update = (details) => updateProfile(auth.currentUser, details);
 
   useEffect(() => {
     const unSubscribed = onAuthStateChanged(auth, (loggedUser) => {
@@ -41,6 +43,7 @@ const AuthProvider = ({ children }) => {
 
   const authInfo = {
     user,
+    update,
     createUser,
     loginUser,
     logOutUser,

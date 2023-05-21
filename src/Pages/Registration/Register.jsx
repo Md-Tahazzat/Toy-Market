@@ -7,7 +7,8 @@ import updateTitle from "../../components/PrivateRoute/Utilities/UpDateTitle";
 
 const Register = () => {
   updateTitle("Register");
-  const { googleSing, gitHubSign, createUser } = useContext(AuthContext);
+  const { googleSing, gitHubSign, createUser, update } =
+    useContext(AuthContext);
   const [errorMsg, setErrorMsg] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
@@ -15,7 +16,6 @@ const Register = () => {
   const {
     register,
     handleSubmit,
-    watch,
     reset,
     formState: { errors },
   } = useForm();
@@ -23,8 +23,16 @@ const Register = () => {
     setErrorMsg("");
     createUser(data.email, data.password)
       .then((user) => {
-        reset();
-        navigate(from, { replace: true });
+        if (user) {
+          const userDetails = {
+            displayName: `${data.name}`,
+            photoURL: `${data.image}`,
+          };
+          update(userDetails).then((result) => {
+            reset();
+            navigate(from, { replace: true });
+          });
+        }
       })
       .catch((err) => {
         setErrorMsg(err.message);
@@ -33,18 +41,20 @@ const Register = () => {
 
   // social login method
   const handleGoogleSigin = () => {
+    setErrorMsg("");
     googleSing()
       .then((result) => {
-        if (result?.user?.email) {
+        if (result?.user) {
           navigate(from, { replace: true });
         }
       })
       .catch((error) => setErrorMsg(err.message));
   };
   const handleGithubSignin = () => {
+    setErrorMsg("");
     gitHubSign()
       .then((result) => {
-        if (result?.user?.email) {
+        if (result?.user) {
           navigate(from, { replace: true });
         }
       })
@@ -79,7 +89,7 @@ const Register = () => {
           </label>
           <input
             type="text"
-            {...register("image")}
+            {...register("image", { required: true })}
             placeholder="Enter photo URL"
             className="py-2 px-2 w-full rounded-md border border-slate-300 focus:outline-none focus:border-slate-400 max-w-sm"
           />
