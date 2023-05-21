@@ -2,11 +2,16 @@ import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Toy = ({ toy }) => {
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const { _id, name, img, price, ratings } = toy;
-
+  const handleViewDetails = (id) => {
+    !user && alert("You have to log in first to view details");
+    navigate(`/toys/${id}`, { replace: true });
+  };
   return (
     <div className="card w-full shadow-xl">
       <figure>
@@ -17,12 +22,14 @@ const Toy = ({ toy }) => {
         <p>Price: ${price}</p>
         <p>Ratings: {ratings}</p>
         <div className="card-actions justify-start">
-          <Link to={`/toys/${_id}`} className="btn btn-primary">
+          <button
+            onClick={() => handleViewDetails(_id)}
+            className="btn btn-primary"
+          >
             View Details
-          </Link>
+          </button>
         </div>
       </div>
-      <ToastContainer />
     </div>
   );
 };

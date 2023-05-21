@@ -12,29 +12,36 @@ const MyToys = () => {
   const [toys, setToys] = useState([]);
   useEffect(() => {
     fetch(
-      `http://localhost:5000/allAddedToys?email=${user?.email}&&sort=${sortingValue}`
+      `https://my-toy-market-server-md-tahazzat.vercel.app/allAddedToys?email=${user?.email}&&sort=${sortingValue}`
     )
       .then((res) => res.json())
       .then((data) => setToys(data));
   }, [sortingValue]);
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/delete/${id}`, { method: "DELETE" })
-      .then((res) => res.json())
-      .then((result) => {
-        if (result.deletedCount > 0) {
-          const remainingToy = toys.filter((toy) => toy._id !== id);
-          setToys(remainingToy);
-          toast.success("deleted successfully");
+    const permission = confirm("Are you sure you want to delete it?");
+    permission &&
+      fetch(
+        `https://my-toy-market-server-md-tahazzat.vercel.app/delete/${id}`,
+        {
+          method: "DELETE",
         }
-      });
+      )
+        .then((res) => res.json())
+        .then((result) => {
+          if (result.deletedCount > 0) {
+            const remainingToy = toys.filter((toy) => toy._id !== id);
+            setToys(remainingToy);
+            toast.success("deleted successfully");
+          }
+        });
   };
 
   const handleSorting = (e) => {
     setSortingValue(e.target.value);
   };
   return (
-    <div className="py-10">
+    <div className="py-10 md:min-h-[calc(100vh-340px)]">
       <div
         className="md:flex items center justify-evenly
       "

@@ -94,16 +94,18 @@ const Navbar = () => {
               ToyBox
             </a>
 
-            <img
-              title={user?.displayName}
-              className="w-8 h-8 ml-auto md:hidden rounded-full border"
-              src={
-                user?.photoURL
-                  ? `${user?.photoURL}`
-                  : "https://static.vecteezy.com/system/resources/previews/005/544/718/original/profile-icon-design-free-vector.jpg"
-              }
-              alt=""
-            />
+            {user && (
+              <img
+                title={user?.displayName}
+                className="w-8 h-8 ml-auto md:hidden rounded-full border"
+                src={
+                  user?.photoURL
+                    ? `${user?.photoURL}`
+                    : "https://static.vecteezy.com/system/resources/previews/005/544/718/original/profile-icon-design-free-vector.jpg"
+                }
+                alt=""
+              />
+            )}
           </div>
         </div>
         <div className="navbar-end hidden lg:flex">

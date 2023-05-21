@@ -2,12 +2,7 @@ import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../Provider/AuthProvider";
 import { FaGithub, FaGoogle } from "react-icons/fa";
-import {
-  Link,
-  useLocation,
-  useNavigate,
-  useNavigation,
-} from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import updateTitle from "../../components/PrivateRoute/Utilities/UpDateTitle";
 
 const Login = () => {
@@ -18,10 +13,6 @@ const Login = () => {
   const location = useLocation();
   console.log(location);
   const from = location?.state?.from || "/";
-  // console.log(location?.state?.from);
-  // if (location?.state?.from.includes("/toys")) {
-  //   toast("you have to login firest");
-  // }
 
   const {
     register,
