@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
-import { Link, useLoaderData } from "react-router-dom";
-import { FaSearch } from "react-icons/fa";
+import { Link, useNavigation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import updateTitle from "../../components/PrivateRoute/Utilities/UpDateTitle";
+import Loading from "../Shared/Loading";
 
 const MyToys = () => {
   updateTitle("My Toys");
+  const navigation = useNavigation();
   const [sortingValue, setSortingValue] = useState("ascending");
   const { user } = useContext(AuthContext);
   const [toys, setToys] = useState([]);
@@ -40,6 +41,7 @@ const MyToys = () => {
   const handleSorting = (e) => {
     setSortingValue(e.target.value);
   };
+  if (navigation?.state === "loading") return <Loading></Loading>;
   return (
     <div className="py-10 md:min-h-[calc(100vh-340px)]">
       <div

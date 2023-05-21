@@ -8,7 +8,6 @@ const UpdateToyDetails = () => {
   updateTitle("Update Toy Details");
   const toyData = useLoaderData();
   const [toy, setToy] = useState(toyData);
-  //   console.log(toy);
 
   const {
     register,
@@ -31,7 +30,6 @@ const UpdateToyDetails = () => {
       )
         .then((res) => res.json())
         .then((result) => {
-          console.log(result);
           if (result?.modifiedCount > 0) {
             toast.success("Successfully updated");
           } else if (result?.matchedCount > 0) {

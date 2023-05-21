@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useNavigation } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import updateTitle from "../../components/PrivateRoute/Utilities/UpDateTitle";
+import Loading from "../Shared/Loading";
 
 const AllToys = () => {
   updateTitle("All Toys");
   const data = useLoaderData();
+  const navigation = useNavigation();
   const [toys, setToys] = useState(data);
   const [inputText, setInputText] = useState("");
-  console.log(toys);
   const handleInputChange = (e) => {
     setInputText(e.target.value);
   };
@@ -23,7 +24,7 @@ const AllToys = () => {
     setToys(filteredToys);
   };
 
-  // - View Details button
+  if (navigation.state === "loading") return <Loading></Loading>;
   return (
     <div className="py-10">
       <h1 className="text-2xl md:text-3xl text-center font-semibold text-slate-700 my-5">

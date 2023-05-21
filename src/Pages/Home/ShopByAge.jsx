@@ -1,15 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Loading from "../Shared/Loading";
 
 const ShopByAge = () => {
   const [childData, setChildData] = useState([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     fetch("https://my-toy-market-server.vercel.app/childData")
       .then((res) => res.json())
-      .then((data) => setChildData(data));
+      .then((data) => {
+        setChildData(data);
+        setLoading(false);
+      });
   }, []);
 
+  if (loading) return <Loading></Loading>;
   const handleSelection = () => {
     toast("Coming soon. Thank You");
   };

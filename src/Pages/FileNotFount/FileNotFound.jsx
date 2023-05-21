@@ -6,7 +6,6 @@ import errorImg2 from "../../assets/error-img.png";
 
 const FileNotFound = () => {
   const error = useRouteError();
-  console.log(error.data);
   return (
     <div className="w-full bg-slate-100 h-screen flex flex-col justify-center items-center">
       <img

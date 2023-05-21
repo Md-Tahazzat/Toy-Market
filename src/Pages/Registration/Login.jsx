@@ -11,7 +11,6 @@ const Login = () => {
   const { googleSing, gitHubSign, loginUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location);
   const from = location?.state?.from || "/";
 
   const {

@@ -2,14 +2,20 @@ import React, { useEffect, useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import Toy from "./Toy";
+import Loading from "../Shared/Loading";
 
 const ShopByCategory = () => {
   const [toys, setToys] = useState([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     fetch("https://my-toy-market-server-md-tahazzat.vercel.app/toys")
       .then((res) => res.json())
-      .then((data) => setToys(data));
+      .then((data) => {
+        setToys(data);
+        setLoading(false);
+      });
   }, []);
+  if (loading) return <Loading></Loading>;
   return (
     <div className="py-10 md:py-16">
       <h1 className="text-2xl md:text-3xl text-center font-semibold text-slate-700 my-5">

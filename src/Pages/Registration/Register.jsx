@@ -11,7 +11,6 @@ const Register = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
-  console.log(location);
   const from = location?.state?.from || "/";
   const {
     register,
@@ -26,7 +25,6 @@ const Register = () => {
       .then((user) => {
         reset();
         navigate(from, { replace: true });
-        console.log(user);
       })
       .catch((err) => {
         setErrorMsg(err.message);
