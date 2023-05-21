@@ -22,7 +22,7 @@ const ShopByAge = () => {
   return (
     <div className="py-10 md:py-16">
       <h1
-        data-aos="fade-in"
+        data-aos="flip-left"
         className="text-2xl md:text-3xl text-center font-semibold text-slate-700 my-5"
       >
         Shop By Age
@@ -37,7 +37,7 @@ const ShopByAge = () => {
               key={el._id}
             >
               <img
-                data-aos="zoom-in-right"
+                data-aos="flip-right"
                 className="w-24 h-24 hover:scale-105 duration-200"
                 src={el.img}
                 alt=""

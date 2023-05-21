@@ -15,7 +15,6 @@ const ToyDetails = () => {
     sellerEmail,
     sellerName,
   } = toy;
-  console.log(toy);
   return (
     <div className="card md:card-side shadow-xl my-20 border">
       <figure className="p-2 md:pl-4">

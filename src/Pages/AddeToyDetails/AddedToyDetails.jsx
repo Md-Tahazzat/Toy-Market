@@ -15,7 +15,6 @@ const AddedToyDetails = () => {
     sellerEmail,
     sellerName,
   } = toy;
-  console.log(toy);
   return (
     <>
       <h1 className="text-center mt-5 mb-2 text-2xl ">Details of {toyName}</h1>

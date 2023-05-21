@@ -9,7 +9,7 @@ const CustomerSaying = () => {
 
       <div className="flex flex-col md:flex-row items-center justify-center gap-10 my-10 md:px-32">
         <div
-          data-aos="fade-right"
+          data-aos="fade-up"
           className="card card-side bg-base-100 shadow-xl"
         >
           <figure>
@@ -29,7 +29,7 @@ const CustomerSaying = () => {
         </div>
 
         <div
-          data-aos="fade-left"
+          data-aos="fade-up"
           className="card card-side bg-base-100 shadow-xl"
         >
           <figure>

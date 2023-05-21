@@ -30,6 +30,7 @@ const AddToys = () => {
         });
     }
   };
+  console.log(user.displayName);
   return (
     <div className="py-10 md:py-16 ">
       <form
@@ -74,9 +75,11 @@ const AddToys = () => {
             type="text"
             id="sellerName"
             required
+            value={user.displayName}
+            readOnly
             {...register("sellerName", { required: true })}
             placeholder="Seller name"
-            className="py-2 px-2 rounded-md border border-slate-300 focus:outline-none focus:border-slate-400 w-full max-w-lg"
+            className="py-2 px-2 rounded-md border border-slate-300 focus:outline-none w-full max-w-lg"
           />
         </div>
 

@@ -20,7 +20,7 @@ const FileNotFound = () => {
       )}
       <h1 className="text-xl md:text-3xl mt-4">{error?.data}</h1>
       <Link to="/" className="btn btn-primary mt-5">
-        Home
+        Back to home
       </Link>
     </div>
   );
